@@ -21,11 +21,11 @@ import { signOutUser } from "@/lib/actions/user.action";
 interface Props {
   fullName: string;
   avatar: string;
-  ownerId: string;
+  $id: string;
   accountId: string;
   email: string;
 }
-const MobileNavigation = ({fullName,avatar,ownerId,accountId,email}:Props) => {
+const MobileNavigation = ({fullName,avatar,$id:ownerId,accountId,email}:Props) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   return (
@@ -85,7 +85,7 @@ const MobileNavigation = ({fullName,avatar,ownerId,accountId,email}:Props) => {
           </nav>
           <Separator className="my-5 bg-light-200/20"/>
           <div className="flex flex-col justify-between gap-5 pb-5">
-            <FileUploader/>
+            <FileUploader ownerId={ownerId} accountId={accountId}/>
             <Button type='submit' onClick={async()=>await signOutUser()} className='mobile-sign-out-button'>
                     <Image src='/assets/icons/logout.svg'
                     alt='logo'
